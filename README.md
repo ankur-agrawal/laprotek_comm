@@ -34,10 +34,14 @@ catkin_make
 #Source the folder
 source devel/setup.bash
 
-# To use it with ROS
+# To use it with ROS (roscore needs to be running...)
 rosrun laprotek_comm laprotek_comm_node ROS
 
-# To use without ROS
+# To use it without ROS
 rosrun laprotek_comm laprotek_comm_node
 
 # To run a trial client for testing purposes
+rosrun laprotek_comm client
+```
+
+If using ROS, you would see topics being spawned named /Laprotek/LeftHandle/Pose, /Laprotek/LeftHandle/Wrench, /joint_states, etc. Poses/joints can now be subscribed and wrenches can be published to the Laprotek.  

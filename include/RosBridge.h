@@ -1,4 +1,3 @@
-// #include "trial.h"
 #include "server.h"
 
 
@@ -93,7 +92,7 @@ template<typename C>void RosBridge<C>::print()
 
 template<typename C>void RosBridge<C>::init()
 {
-  int argc;
+  int argc=0;
   char** argv;
   // ros::M_string s;
   ros::init(argc, argv, "laprotek_comm_node");

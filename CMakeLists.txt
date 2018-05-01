@@ -28,10 +28,9 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
- add_executable(${PROJECT_NAME}_node src/server.cpp)
-
+add_executable(${PROJECT_NAME}_node src/server.cpp)
+add_executable(client src/client.cpp)
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(${PROJECT_NAME}_node
-   ${catkin_LIBRARIES}
- )
+target_link_libraries(${PROJECT_NAME}_node ${catkin_LIBRARIES})
+ target_link_libraries(client ${catkin_LIBRARIES})

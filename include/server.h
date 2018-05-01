@@ -8,9 +8,7 @@
 #include <arpa/inet.h>
 #include <stdlib.h>
 #include <unistd.h>
-// #include <time.h>
 #include <stdint.h>
-// #include <fstream>
 #include <iomanip>
 #include <ros/ros.h>
 #include <geometry_msgs/PoseStamped.h>
@@ -18,8 +16,6 @@
 #include <sensor_msgs/JointState.h>
 #include <vector>
 #include <signal.h>
-// #include "tf/LinearMath/Matrix3x3.h"
-// #include "tf/Quaternion.h"
 #include <tf/transform_datatypes.h>
 #include <string.h>
 
@@ -281,15 +277,15 @@ void Server::getRosJoints(sensor_msgs::JointState &joints)
   int n=joints.name.size();
   joints.position.resize(n);
   joints.position[0]=LJ[0];
-  joints.position[1]=LJ[1]-0.33;
-  joints.position[2]=LJ[2]-0.88;
+  joints.position[1]=LJ[1];
+  joints.position[2]=LJ[2];
   joints.position[3]=LJ[3];
   joints.position[4]=LJ[4];
   joints.position[5]=LJ[5];
   joints.position[6]=LJ[6];
   joints.position[7]=RJ[0];
-  joints.position[8]=RJ[1]-0.33;
-  joints.position[9]=RJ[2]-0.88;
+  joints.position[8]=RJ[1];
+  joints.position[9]=RJ[2];
   joints.position[10]=RJ[3];
   joints.position[11]=RJ[4];
   joints.position[12]=RJ[5];

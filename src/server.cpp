@@ -1,16 +1,15 @@
 #include "RosBridge.h"
 
-// #define MAX_ITERATION 100000
+Server server(1500);
 
 void siginthandler(int param)
 {
+  server.closeConnection();
   exit(1);
 }
 
 int main(int argc, char **argv)
 {
-
-  Server server(1500);
   RosBridge<Server> Bridge(&server);
   // char *param;
   // param[0]='R';
@@ -19,6 +18,10 @@ int main(int argc, char **argv)
   {
     Bridge.init();
     std::cout << "ROS Node started and initialised" << '\n';
+  }
+  else
+  {
+    std::cout << "No ROS topic will be generated" << '\n';
   }
 
   while(1)
@@ -31,25 +34,26 @@ int main(int argc, char **argv)
     }
     while(1)
     {
-      ros::spinOnce();
       if (argc==2 && !strcmp(argv[1], "ROS"))
       {
+        ros::spinOnce();
         Bridge.setFuncPtr3(&Server::getRosWrenches);
         Bridge.setWrenches();
       }
       server.PackData();
       if (!server.SendData())
+      {
         break;
+      }
       server.ReceiveData();
       server.UnpackData();
-      // server.DebugPrint();
-    if (argc==2 && !strcmp(argv[1], "ROS"))
+
+      if (argc==2 && !strcmp(argv[1], "ROS"))
       {
         Bridge.setFuncPtr(&Server::getRosPoses);
         Bridge.setPoses();
         Bridge.setFuncPtr2(&Server::getRosJoints);
         Bridge.setJoints();
-        // Bridge.print();
 
         Bridge.publishPoses();
         Bridge.publishJoints();
