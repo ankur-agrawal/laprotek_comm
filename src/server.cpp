@@ -1,5 +1,4 @@
 #include "RosBridge.h"
-
 Server server(1500);
 
 void siginthandler(int param)
@@ -11,9 +10,6 @@ void siginthandler(int param)
 int main(int argc, char **argv)
 {
   RosBridge<Server> Bridge(&server);
-  // char *param;
-  // param[0]='R';
-  // std::cout << argc << '\t'<< argv[1] << '\n';
   if (argc==2 && !strcmp(argv[1], "ROS"))
   {
     Bridge.init();
